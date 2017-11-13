@@ -1,6 +1,7 @@
 import os
 from caesar import Caesar
 from keywords import Keyword
+from affine import Affine
 
 
 def clear():
@@ -11,10 +12,8 @@ def clear():
 def display_menu():
     '''Displays the ciper options'''
     menu = '''These are the current available ciphers:
-
+-Affine
 -Caesar
--Atbash
--Transposition
 -Keyword
 '''
     print(menu)
@@ -22,7 +21,7 @@ def display_menu():
 
 def validate_cipher_choice():
     """Validates the user's cipher choice against the available ciphers"""
-    cipher_list = ['caesar', 'atbash', 'transposition', 'keyword']
+    cipher_list = ['affine', 'caesar', 'keyword']
     cipher_choice = ''
     while cipher_choice not in cipher_list:
         cipher_choice = input('Which cipher would you like to use? ').lower()
@@ -55,6 +54,11 @@ def run_cipher(cipher_choice, message, encode_choice):
             return Keyword().encrypt(message)
         elif encode_choice == 'decrypt':
             return Keyword().decrypt(message)
+    elif cipher_choice == 'affine':
+        if encode_choice == 'encrypt':
+            return Affine().encrypt(message)
+        elif encode_choice == 'decrypt':
+            return Affine().decrypt(message)
 
 
 def get_choices():

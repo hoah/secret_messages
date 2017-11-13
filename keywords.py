@@ -35,7 +35,7 @@ class Keyword(Cipher):
                 self.output.append(' ')
             else:
                 self.output.append(self.key[self.alphabet.index(letter)])
-        return ''.join(self.output)
+        return ''.join(self.output).upper()
 
     def decrypt(self, message):
         '''Decrypts and returns message'''
@@ -51,4 +51,4 @@ class Keyword(Cipher):
                 self.output.append(' ')
             else:
                 self.output.append(self.alphabet[self.key.index(letter)])
-        return ''.join(self.output)
+        return ''.join(self.output).upper()
