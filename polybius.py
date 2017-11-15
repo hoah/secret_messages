@@ -19,22 +19,36 @@ class Polybius(Cipher):
                 self.table.append(str(x) + str(y))
         self.table.insert(8, '24')
 
+    def remove_nonalpha(self, message):
+        new_message = ''
+        for letter in message:
+            if letter.isalpha() or letter.isspace():
+                new_message += letter
+        return new_message
+
+    def remove_nonnumeric(self, message):
+        new_message = ''
+        for letter in message:
+            if letter.isnumeric() or letter.isspace():
+                new_message += letter
+        return new_message
+
     def encrypt(self, message):
         '''Encrypts message to coordinates if Polybius table'''
         output = []
-        message = message.lower()
+        message = self.remove_nonalpha(message.lower())
         for letter in message:
             try:
                 output.append(self.table[self.alphabet.index(letter)])
             except ValueError:
                 output.append(letter)
 
-        return ''.join(output).upper()
+        return ''.join(output)
 
     def decrypt(self, message):
         '''Decrypts message to coordinates if Polybius table'''
         output = []
-        message_list = message.lower().split()
+        message_list = self.remove_nonnumeric(message.lower()).split()
 
         for word in message_list:
             for i in range(0, len(word), 2):
@@ -46,4 +60,4 @@ class Polybius(Cipher):
                     output.append(message[i])
             output.append(' ')
 
-        return ''.join(output).upper()
+        return ''.join(output)

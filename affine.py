@@ -16,17 +16,18 @@ class Affine(Cipher):
 
     def __init__(self):
         """
-        Creates instance of the Class Affine using addition modulo 26 
+        Creates instance of the Class Affine using addition modulo 26
 
         Forumla:
-        cipher_index = (alpha * letter_index + beta) % 26 
+        cipher_index = (alpha * letter_index + beta) % 26
         """
         self.accepted_alpha = [3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25]
 
         while True:
             try:
-                self.alpha = int(
-                    input('Please enter alpha key, should be an odd integer from 3-25, except 13: '))
+                self.alpha = int(input(
+                    "Please enter alpha key, " +
+                    "should be an odd integer from 3-25, except 13: "))
                 if self.alpha in self.accepted_alpha:
                     break
                 else:
@@ -36,8 +37,8 @@ class Affine(Cipher):
 
         while True:
             try:
-                self.beta = int(
-                    input('Please enter beta key, any integer greater than 1: '))
+                self.beta = int(input(
+                    'Please enter beta key, any integer greater than 1: '))
                 if self.beta > 1:
                     break
                 else:
@@ -59,11 +60,12 @@ class Affine(Cipher):
         for letter in message:
             try:
                 output.append(
-                    self.alphabet[self.cipher_list[self.alphabet.index(letter)]])
+                    self.alphabet[self.cipher_list[self.alphabet.index(
+                        letter)]])
             except ValueError:
                 output.append(letter)
 
-        return ''.join(output).upper()
+        return ''.join(output)
 
     def decrypt(self, message):
         '''Decrypts message, requires message to be string'''
@@ -73,8 +75,9 @@ class Affine(Cipher):
         for letter in message:
             try:
                 output.append(
-                    self.alphabet[self.cipher_list.index(self.alphabet.index(letter))])
+                    self.alphabet[self.cipher_list.index(self.alphabet.index(
+                        letter))])
             except ValueError:
                 output.append(letter)
 
-        return ''.join(output).upper()
+        return ''.join(output)

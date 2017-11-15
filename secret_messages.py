@@ -75,10 +75,11 @@ def get_choices():
     cipher_choice = validate_cipher_choice()
     clear()
     message = input(
-        "{} is an excellent cipher. What's the message? ".format(cipher_choice.capitalize()))
+        "{} is an excellent cipher. What's the message? ".format(
+            cipher_choice.capitalize()))
     encode_choice = validate_encode_choice()
     message_code = run_cipher(cipher_choice, message, encode_choice)
-    print(message_code)
+    print(message_code.upper())
 
 
 if __name__ == '__main__':
